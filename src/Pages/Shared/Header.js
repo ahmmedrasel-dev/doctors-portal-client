@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   const menuItems = <>
-    <li><Link to='/about'>Home</Link></li>
+    <li><Link to='/'>Home</Link></li>
     <li><Link to='/appoinment'>Appoinment</Link></li>
     <li><Link to='/review'>Review</Link></li>
     <li><Link to='/contact'>Contact</Link></li>
@@ -21,7 +21,7 @@ const Header = () => {
             {menuItems}
           </ul>
         </div>
-        <Link to='/home' className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+        <Link to='/home' className="btn btn-ghost normal-case text-xl">Doctors Portal</Link>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
