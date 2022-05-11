@@ -21,7 +21,7 @@ const Header = () => {
             {menuItems}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <Link to='/home' className="btn btn-ghost normal-case text-xl">daisyUI</Link>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
