@@ -13,7 +13,7 @@ const Banner = () => {
         backgroundSize: 'cover'
       }}
     >
-      <div className="hero-content flex-col lg:flex-row-reverse lg:px-12">
+      <div className="hero-content flex-col lg:flex-row-reverse max-w-7xl mx-auto lg:px-12">
         <img src={chair} className="lg:max-w-lg max-w-sm rounded-lg shadow-2xl" alt='Home banner' />
         <div>
           <h1 className="text-5xl font-bold">Your New Smile Starts Here</h1>

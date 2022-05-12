@@ -5,7 +5,7 @@ import Header from './Pages/Shared/Header';
 
 function App() {
   return (
-    <div className="max-w-7xl mx-auto">
+    <div>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
