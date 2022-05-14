@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import chair from '../../assets/images/chair.png';
 import bg from '../../../src/assets/images/bg.png';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-const AppoinmentHero = () => {
-  const [date, setDate] = useState(new Date())
+const AppoinmentHero = ({ date, setDate }) => {
   return (
     <div
       className="hero lg:min-h-screen min-w-min"
