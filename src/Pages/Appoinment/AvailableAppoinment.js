@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import BookingModal from './BookingModal';
@@ -8,9 +9,12 @@ const AvailableAppoinment = ({ date }) => {
   const [treatment, setTreatment] = useState(null)
 
   useEffect(() => {
-    fetch('services.json')
-      .then(res => res.json())
-      .then(data => setAvaiableService(data))
+    const serviceUrl = 'http://localhost:5000/services';
+    const getServices = async () => {
+      const { data } = await axios.get(serviceUrl);
+      setAvaiableService(data);
+    }
+    getServices();
   }, [])
   return (
     <div className='max-w-7xl mx-auto lg:py-12'>
