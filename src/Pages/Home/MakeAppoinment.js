@@ -12,7 +12,7 @@ const MakeAppoinment = () => {
       <div className='flex-1 hidden lg:block'>
         <img className='mt-[-180px]' src={doctor} alt="" />
       </div>
-      <div className='flex-1'>
+      <div className='flex-1 p-5'>
         <h3 className='text-xl text-primary'>Apoinment</h3>
         <h2 className='text-3xl text-white'>Make on appoinment Today.</h2>
         <p className='text-md text-white py-4 pr-12'>Search for and book a doctor's appointment, either in-clinic, or a teleconsulation. Your booking is automatically confirmed, as the doctor specifies his working hours and is notified of the booking details.</p>

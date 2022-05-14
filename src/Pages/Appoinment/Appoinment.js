@@ -1,9 +1,12 @@
 import React from 'react';
+import Footer from '../Shared/Footer';
+import AppoinmentHero from './AppoinmentHero';
 
 const Appoinment = () => {
   return (
     <div>
-      <h1>This is Appoinment pages</h1>
+      <AppoinmentHero></AppoinmentHero>
+      <Footer></Footer>
     </div>
   );
 };

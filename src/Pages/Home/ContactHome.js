@@ -14,7 +14,7 @@ const ContactHome = () => {
       </div>
 
       <div className='max-w-xl mx-auto'>
-        <form className='grid grid-cols-1 gap-5'>
+        <form className='grid grid-cols-1 gap-5 p-5'>
           <input type="email" placeholder="Email Addrss" className="input input-bordered input-primary w-full max-w-xl" />
           <input type="text" placeholder="Subject" className="input input-bordered input-primary w-full max-w-xl" />
           <textarea className="textarea textarea-primary w-full max-w-xl" placeholder="Message" rows={6}></textarea>

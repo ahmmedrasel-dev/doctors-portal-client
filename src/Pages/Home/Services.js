@@ -33,7 +33,7 @@ const Services = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet quibusdam in pariatur?
       </div>
 
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 px-5'>
         {
           services.map(service => <ServicesCard
             key={service._id}
