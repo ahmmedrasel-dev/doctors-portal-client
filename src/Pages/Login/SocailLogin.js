@@ -23,14 +23,19 @@ const SocailLogin = () => {
     }
   }, [googleError])
 
+  useEffect(() => {
+    if (googleUser) {
+      navigate(from, { replace: true });
+      toast.success('User Login Successfully.');
+    }
+  }, [googleUser, from, navigate])
+
   if (googleLoading) {
     return <Loading></Loading>
   }
 
-  if (googleUser) {
-    navigate(from, { replace: true });
-    toast.success('User Login Successfully.');
-  }
+
+
   return (
     <button
       className="btn btn-outline"

@@ -29,14 +29,18 @@ const Login = () => {
     }
   }, [signInError])
 
+  useEffect(() => {
+    if (signInUser) {
+      navigate(from, { replace: true });
+      toast.success('User Login Successfully.');
+    }
+  }, [signInUser, from, navigate])
+
   if (signInLoading) {
     return <Loading></Loading>
   }
 
-  if (signInUser) {
-    navigate(from, { replace: true });
-    toast.success('User Login Successfully.');
-  }
+
 
 
   return (
