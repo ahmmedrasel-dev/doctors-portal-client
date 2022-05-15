@@ -1,40 +1,55 @@
 import React, { useEffect } from 'react';
-import auth from '../../firebase.init';
-import { toast } from 'react-toastify';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
+import SocailLogin from '../Login/SocailLogin';
 import Loading from '../Shared/Loading';
-import SocailLogin from './SocailLogin';
+import { useUpdateProfile } from 'react-firebase-hooks/auth';
 
-const Login = () => {
-
+const Signup = () => {
 
   const [
-    signInWithEmailAndPassword,
-    signInUser,
-    signInLoading,
-    signInError,
-  ] = useSignInWithEmailAndPassword(auth);
-  const { register, formState: { errors }, handleSubmit } = useForm();
+    createUserWithEmailAndPassword,
+    signUpUser,
+    signUpLoading,
+    signUpError,
+  ] = useCreateUserWithEmailAndPassword(auth);
+
+  const [
+    updateProfile,
+    updating,
+    updateError
+  ] = useUpdateProfile(auth);
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit
+  } = useForm();
+
   const navigate = useNavigate()
 
   const onSubmit = data => {
-    signInWithEmailAndPassword(data.email, data.password)
+    createUserWithEmailAndPassword(data.email, data.password, data.name)
   };
 
   useEffect(() => {
-    if (signInError) {
-      toast.error(signInError.message);
+    if (signUpError) {
+      toast.error(signUpError.message);
     }
-  }, [signInError])
+    if (updateError) {
+      toast.error(updateError.message);
+    }
+  }, [signUpError, updateError])
 
-  if (signInLoading) {
+  if (signUpLoading || updating) {
     return <Loading></Loading>
   }
 
-  if (signInUser) {
-    toast.success('User Login Successfully.');
+  if (signUpUser) {
+    toast.success('User Created Successfully.');
     navigate('/')
   }
 
@@ -43,9 +58,29 @@ const Login = () => {
     <div className='flex justify-center items-center min-h-screen'>
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="text-center font-bold text-xl">Login</h2>
+          <h2 className="text-center font-bold text-xl">Signup</h2>
 
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="input input-bordered w-full max-w-xs"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: 'Name is Required!'
+                  }
+                })}
+              />
+              <label className="label">
+                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+              </label>
+            </div>
+
             <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -61,7 +96,7 @@ const Login = () => {
                   },
                   required: {
                     value: true,
-                    message: 'Email Required!'
+                    message: 'Email is Required!'
                   }
                 })}
               />
@@ -76,6 +111,7 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
+                autoComplete='off'
                 type="password"
                 placeholder="Password"
                 className="input input-bordered w-full max-w-xs"
@@ -100,15 +136,15 @@ const Login = () => {
             <input
               type="submit"
               className="btn btn-accent uppercase w-full"
-              value="Login"
+              value="Signup"
             />
 
           </form>
           <span
-            className='text-center label-text'>New to Doctors Portal? <Link
-              to="/signup"
+            className='text-center label-text'>Already have account? <Link
+              to="/login"
               className='text-primary'
-            >Create new account</Link></span>
+            >Login</Link></span>
 
           <div className="divider">OR</div>
           <SocailLogin></SocailLogin>
@@ -118,4 +154,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
