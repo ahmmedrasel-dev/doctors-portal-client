@@ -22,6 +22,7 @@ const Signup = () => {
     updating,
     updateError
   ] = useUpdateProfile(auth);
+  const navigate = useNavigate()
 
   const {
     register,
@@ -29,10 +30,12 @@ const Signup = () => {
     handleSubmit
   } = useForm();
 
-  const navigate = useNavigate()
 
-  const onSubmit = data => {
-    createUserWithEmailAndPassword(data.email, data.password, data.name)
+  const onSubmit = async data => {
+    await createUserWithEmailAndPassword(data.email, data.password, data.name)
+    await updateProfile(data.name);
+    navigate('/appoinment')
+
   };
 
   useEffect(() => {
