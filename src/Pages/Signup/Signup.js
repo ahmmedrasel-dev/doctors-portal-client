@@ -31,13 +31,6 @@ const Signup = () => {
   } = useForm();
 
 
-  const onSubmit = async data => {
-    await createUserWithEmailAndPassword(data.email, data.password, data.name)
-    await updateProfile(data.name);
-    navigate('/appoinment')
-
-  };
-
   useEffect(() => {
     if (signUpError) {
       toast.error(signUpError.message);
@@ -47,10 +40,16 @@ const Signup = () => {
     }
   }, [signUpError, updateError])
 
+
   if (signUpLoading || updating) {
     return <Loading></Loading>
   }
 
+  const onSubmit = async data => {
+    await createUserWithEmailAndPassword(data.email, data.password, data.name)
+    await updateProfile(data.name);
+    navigate('/appoinment')
+  };
 
   return (
     <div className='flex justify-center items-center min-h-screen'>
