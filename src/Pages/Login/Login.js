@@ -19,9 +19,7 @@ const Login = () => {
   const navigate = useNavigate()
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
-  const onSubmit = data => {
-    signInWithEmailAndPassword(data.email, data.password)
-  };
+
 
   useEffect(() => {
     if (signInError) {
@@ -40,6 +38,9 @@ const Login = () => {
     return <Loading></Loading>
   }
 
+  const onSubmit = data => {
+    signInWithEmailAndPassword(data.email, data.password)
+  };
 
 
 
@@ -80,6 +81,7 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
+                autoComplete='off'
                 type="password"
                 placeholder="Password"
                 className="input input-bordered w-full max-w-xs"

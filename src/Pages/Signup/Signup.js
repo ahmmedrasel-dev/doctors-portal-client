@@ -51,11 +51,6 @@ const Signup = () => {
     return <Loading></Loading>
   }
 
-  if (signUpUser) {
-    toast.success('User Created Successfully.');
-    navigate('/')
-  }
-
 
   return (
     <div className='flex justify-center items-center min-h-screen'>
@@ -80,7 +75,7 @@ const Signup = () => {
                 })}
               />
               <label className="label">
-                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors?.name?.message}</span>}
               </label>
             </div>
 
@@ -104,8 +99,8 @@ const Signup = () => {
                 })}
               />
               <label className="label">
-                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors?.email?.message}</span>}
+                {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors?.email?.message}</span>}
               </label>
             </div>
 
@@ -131,8 +126,8 @@ const Signup = () => {
               />
               <label className="label">
                 <Link className="label-text" to='reset-password'>Forgot Password?</Link>
-                {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
-                {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors?.password?.message}</span>}
+                {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors?.password?.message}</span>}
               </label>
             </div>
 

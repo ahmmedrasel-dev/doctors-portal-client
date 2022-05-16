@@ -15,7 +15,7 @@ const AvailableAppoinment = ({ date }) => {
       setAvaiableService(data);
     }
     getServices();
-  }, [])
+  }, [avaiableService])
   return (
     <div className='max-w-7xl mx-auto lg:py-12'>
       <h3 className='text-2xl text-secondary text-center lg:pb-8'>Available Appoinment on: {format(date, 'PP')}</h3>

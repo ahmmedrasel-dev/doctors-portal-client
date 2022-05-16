@@ -4,12 +4,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
-  const { name, slot } = treatment;
+  const { name, slots } = treatment;
   const [user, loading, error] = useAuthState(auth)
   const handleBooking = e => {
     e.preventDefault()
-    const slot = e.target.slot.value;
-    console.log(slot)
+    const slots = e.target.slot.value;
+    console.log(slots)
     setTreatment(null)
   }
   return (
@@ -23,7 +23,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
             <input type="text" readOnly value={format(date, 'PP')} className="input input-bordered input-primary w-full max-w-xs" />
             <select name="slot" className="select select-bordered w-full max-w-xs">
               {
-                slot.map((eachSlot, index) => <option
+                slots?.map((eachSlot, index) => <option
                   key={index}
                   value={eachSlot}
                 >{eachSlot}</option>)

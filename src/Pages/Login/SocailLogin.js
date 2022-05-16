@@ -35,7 +35,6 @@ const SocailLogin = () => {
   }
 
 
-
   return (
     <button
       className="btn btn-outline"
