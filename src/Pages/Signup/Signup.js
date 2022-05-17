@@ -7,6 +7,7 @@ import auth from '../../firebase.init';
 import SocailLogin from '../Login/SocailLogin';
 import Loading from '../Shared/Loading';
 import { useUpdateProfile } from 'react-firebase-hooks/auth';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
 
@@ -22,7 +23,10 @@ const Signup = () => {
     updating,
     updateError
   ] = useUpdateProfile(auth);
+
+  const [token] = useToken(signUpUser)
   const navigate = useNavigate()
+
 
   const {
     register,
@@ -45,10 +49,14 @@ const Signup = () => {
     return <Loading></Loading>
   }
 
+  if (token) {
+    navigate('/appoinment')
+  }
+
   const onSubmit = async data => {
     await createUserWithEmailAndPassword(data.email, data.password, data.name)
     await updateProfile(data.name);
-    navigate('/appoinment')
+
   };
 
   return (

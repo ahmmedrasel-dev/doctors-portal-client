@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
 import SocailLogin from './SocailLogin';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
@@ -19,6 +20,7 @@ const Login = () => {
   const navigate = useNavigate()
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
+  const [token] = useToken(signInUser)
 
 
   useEffect(() => {
@@ -28,11 +30,11 @@ const Login = () => {
   }, [signInError])
 
   useEffect(() => {
-    if (signInUser) {
+    if (token) {
       navigate(from, { replace: true });
       toast.success('User Login Successfully.');
     }
-  }, [signInUser, from, navigate])
+  }, [signInUser, from, navigate, token])
 
   if (signInLoading) {
     return <Loading></Loading>

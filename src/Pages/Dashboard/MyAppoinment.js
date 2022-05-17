@@ -17,8 +17,8 @@ const MyAppoinment = () => {
   return (
     <div>
       <h1 className='text-center text-primary text-2xl uppercase'>My Appoinment: {appoinments.length}</h1>
-      <div class="overflow-x-auto">
-        <table class="table table-compact w-3/5 mx-auto mt-3">
+      <div className="overflow-x-auto">
+        <table className="table table-compact w-3/5 mx-auto mt-3">
           <thead>
             <tr>
               <th></th>

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
+import useToken from '../../hooks/useToken';
 
 const SocailLogin = () => {
   const [
@@ -13,6 +14,7 @@ const SocailLogin = () => {
     googleLoading,
     googleError
   ] = useSignInWithGoogle(auth);
+  const [token] = useToken(googleUser)
   const navigate = useNavigate()
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -23,6 +25,7 @@ const SocailLogin = () => {
     }
   }, [googleError])
 
+
   useEffect(() => {
     if (googleUser) {
       navigate(from, { replace: true });
@@ -30,6 +33,9 @@ const SocailLogin = () => {
     }
   }, [googleUser, from, navigate])
 
+  if (token) {
+    navigate('/appoinment')
+  }
   if (googleLoading) {
     return <Loading></Loading>
   }
