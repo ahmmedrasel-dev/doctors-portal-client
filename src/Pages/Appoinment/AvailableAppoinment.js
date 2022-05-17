@@ -12,7 +12,6 @@ const AvailableAppoinment = ({ date }) => {
   const [treatment, setTreatment] = useState(null)
   const formatedDate = format(date, 'PP');
 
-
   const serviceUrl = `http://localhost:5000/available?date=${formatedDate}`;
   const getServices = async () => {
     const { data } = await axios.get(serviceUrl);
