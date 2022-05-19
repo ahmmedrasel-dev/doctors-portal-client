@@ -6,13 +6,13 @@ import User from './User';
 const Users = () => {
   // const [users, setUsers] = useState([]);
   // useEffect(() => {
-  //   const url = `http://localhost:5000/users`;
+  //   const url = `https://safe-gorge-75792.herokuapp.com/users`;
   //   fetch(url)
   //     .then(res => res.json())
   //     .then(data => setUsers(data));
   // }, [])
 
-  const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`http://localhost:5000/users`, {
+  const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`https://safe-gorge-75792.herokuapp.com/users`, {
     method: 'GET',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`,

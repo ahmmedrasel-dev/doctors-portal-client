@@ -9,7 +9,7 @@ const MyAppoinment = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-    const apiUrl = `http://localhost:5000/booking?patient=${user.email}`
+    const apiUrl = `https://safe-gorge-75792.herokuapp.com/booking?patient=${user.email}`
 
     const getData = async () => {
       try {

@@ -12,7 +12,7 @@ const AvailableAppoinment = ({ date }) => {
   const formatedDate = format(date, 'PP');
 
   // Using React Query
-  const { data: avaiableService, isLoading, refetch } = useQuery(['available', formatedDate], () => fetch(`http://localhost:5000/available?date=${formatedDate}`)
+  const { data: avaiableService, isLoading, refetch } = useQuery(['available', formatedDate], () => fetch(`https://safe-gorge-75792.herokuapp.com/available?date=${formatedDate}`)
     .then(res => res.json()))
 
 
