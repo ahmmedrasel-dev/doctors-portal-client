@@ -2,16 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
+import Loading from '../Shared/Loading';
 
 const AddDoctors = () => {
 
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
+    reset
   } = useForm();
 
-  const { data: services, isLoading } = useQuery('/services', () => fetch(`http://localhost:5000/services`).then(res => res.json()))
+  const { data: services, isLoading } = useQuery('/services', () => fetch(`https://safe-gorge-75792.herokuapp.com/services`).then(res => res.json()))
 
   const imgStorageKey = `71c3b2215e8817f9c1afc8f8d7c617f4`;
   const onSubmit = async data => {
@@ -33,10 +36,32 @@ const AddDoctors = () => {
             speciality: data.speciality,
             img: img
           }
+
+          fetch('https://safe-gorge-75792.herokuapp.com/doctor', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(doctor),
+          })
+            .then(res => res.json())
+            .then(data => {
+
+              if (data.success) {
+                toast.success(data.message);
+                reset();
+              }
+              else {
+                toast.success('Fail to add the doctor.')
+              }
+            })
+
         }
       })
+  }
 
-  };
+
 
   return (
     <div className='flex justify-center items-center min-h-screen'>
@@ -129,13 +154,6 @@ const AddDoctors = () => {
             />
 
           </form>
-          <span
-            className='text-center label-text'>Already have account? <Link
-              to="/login"
-              className='text-primary'
-            >Login</Link></span>
-
-          <div className="divider">OR</div>
         </div>
       </div>
     </div>

@@ -15,6 +15,7 @@ import MyHistory from './Pages/Dashboard/MyHistory';
 import Users from './Pages/Dashboard/Users';
 import RequireAmin from './Pages/Login/RequireAmin';
 import AddDoctors from './Pages/Dashboard/AddDoctors';
+import ManageDoctor from './Pages/Dashboard/ManageDoctor';
 
 
 function App() {
@@ -45,6 +46,12 @@ function App() {
           <Route path='add-doctor' element={
             <RequireAmin>
               <AddDoctors></AddDoctors>
+            </RequireAmin>
+          }></Route>
+
+          <Route path='manage-doctor' element={
+            <RequireAmin>
+              <ManageDoctor></ManageDoctor>
             </RequireAmin>
           }></Route>
 
