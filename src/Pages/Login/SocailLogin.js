@@ -27,15 +27,12 @@ const SocailLogin = () => {
 
 
   useEffect(() => {
-    if (googleUser) {
+    if (token) {
       navigate(from, { replace: true });
       toast.success('User Login Successfully.');
     }
-  }, [googleUser, from, navigate])
+  }, [token, from, navigate])
 
-  if (token) {
-    navigate('/appoinment')
-  }
   if (googleLoading) {
     return <Loading></Loading>
   }

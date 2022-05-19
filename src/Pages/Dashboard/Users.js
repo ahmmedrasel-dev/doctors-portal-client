@@ -1,0 +1,55 @@
+import React from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
+import User from './User';
+
+const Users = () => {
+  // const [users, setUsers] = useState([]);
+  // useEffect(() => {
+  //   const url = `http://localhost:5000/users`;
+  //   fetch(url)
+  //     .then(res => res.json())
+  //     .then(data => setUsers(data));
+  // }, [])
+
+  const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`http://localhost:5000/users`, {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    }
+  }).then(res => res.json()))
+
+  if (isLoading) {
+    return <Loading></Loading>
+  }
+
+  return (
+    <div>
+      <h1 className='text-center text-primary text-2xl uppercase'>All Users: {users.length}</h1>
+
+      <div className="overflow-x-auto">
+        <table className="table table-compact w-4/5 mx-auto px-4 mt-4">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>User Email</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              users.map(user => <User
+                key={user._id}
+                user={user}
+                refetch={refetch}
+              ></User>)
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default Users;

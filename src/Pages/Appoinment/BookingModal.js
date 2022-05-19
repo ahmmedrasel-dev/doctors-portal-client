@@ -25,7 +25,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
     };
 
     try {
-      const postBooking = async () => {
+      const setBooking = async () => {
         const { data } = await axios.post('http://localhost:5000/booking', booking);
         if (data.success) {
           toast.success(data.message)
@@ -33,7 +33,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
           toast.error(data.message)
         }
       }
-      postBooking();
+      setBooking();
     }
     catch (error) {
       console.log(error.message)

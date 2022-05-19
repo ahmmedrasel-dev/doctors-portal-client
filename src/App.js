@@ -11,6 +11,8 @@ import RequireAuth from './Pages/Login/RequireAuth';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyAppoinment from './Pages/Dashboard/MyAppoinment.js';
 import MyReview from './Pages/Dashboard/MyReview';
+import MyHistory from './Pages/Dashboard/MyHistory';
+import Users from './Pages/Dashboard/Users';
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/appoinment' element={
           <RequireAuth>
             <Appoinment></Appoinment>
@@ -31,6 +34,8 @@ function App() {
         }>
           <Route index element={<MyAppoinment></MyAppoinment>}></Route>
           <Route path='myreview' element={<MyReview></MyReview>}></Route>
+          <Route path='myhistroy' element={<MyHistory></MyHistory>}></Route>
+          <Route path='users' element={<Users></Users>}></Route>
 
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>

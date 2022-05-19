@@ -9,7 +9,7 @@ const Header = () => {
 
   const signout = () => {
     signOut(auth)
-
+    localStorage.removeItem('accessToken');
   }
 
   const menuItems = <>

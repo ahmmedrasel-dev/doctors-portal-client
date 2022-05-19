@@ -2,18 +2,37 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
 const MyAppoinment = () => {
   const [appoinments, setAppoinments] = useState([]);
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   useEffect(() => {
     const apiUrl = `http://localhost:5000/booking?patient=${user.email}`
+
     const getData = async () => {
-      const { data } = await axios.get(apiUrl);
-      setAppoinments(data);
+      try {
+        const token = localStorage.getItem('accessToken');
+        const response = await axios.get(apiUrl, {
+          headers: {
+            'authorization': `Bearer ${token}`
+          }
+        });
+
+        setAppoinments(response.data);
+      }
+      catch (error) {
+        if (error.response.status === 401 || error.response.status === 403) {
+          signOut(auth);
+          localStorage.removeItem('accessToken');
+          navigate('/')
+        }
+      }
     }
+
     getData()
-  }, [])
+  }, [user])
   return (
     <div>
       <h1 className='text-center text-primary text-2xl uppercase'>My Appoinment: {appoinments.length}</h1>
@@ -30,7 +49,7 @@ const MyAppoinment = () => {
           </thead>
           <tbody>
             {
-              appoinments.map((a, index) => <tr>
+              appoinments.map((a, index) => <tr key={index}>
                 <th>{index + 1}</th>
                 <td>{a.teatmentName}</td>
                 <td>{a.patientName}</td>

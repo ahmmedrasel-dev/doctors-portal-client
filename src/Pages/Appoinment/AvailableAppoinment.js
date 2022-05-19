@@ -1,7 +1,6 @@
-import { async } from '@firebase/util';
 import axios from 'axios';
 import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import BookingModal from './BookingModal';
@@ -12,14 +11,9 @@ const AvailableAppoinment = ({ date }) => {
   const [treatment, setTreatment] = useState(null)
   const formatedDate = format(date, 'PP');
 
-  const serviceUrl = `http://localhost:5000/available?date=${formatedDate}`;
-  const getServices = async () => {
-    const { data } = await axios.get(serviceUrl);
-    return data
-  }
-
   // Using React Query
-  const { data: avaiableService, isLoading, refetch } = useQuery(['available', formatedDate], getServices)
+  const { data: avaiableService, isLoading, refetch } = useQuery(['available', formatedDate], () => fetch(`http://localhost:5000/available?date=${formatedDate}`)
+    .then(res => res.json()))
 
 
   if (isLoading) {
