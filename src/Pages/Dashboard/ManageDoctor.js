@@ -6,7 +6,7 @@ import Doctors from './Doctors';
 
 const ManageDoctor = () => {
   const [deletDoctor, setDeleteDoctor] = useState(null);
-  const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch(`https://enigmatic-garden-93442.herokuapp.com/doctors`, {
+  const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch(`https://doctors-portal-server2.herokuapp.com/doctors`, {
     method: 'GET',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`,

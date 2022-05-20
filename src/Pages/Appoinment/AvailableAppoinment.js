@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { format } from 'date-fns';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
@@ -12,14 +11,12 @@ const AvailableAppoinment = ({ date }) => {
   const formatedDate = format(date, 'PP');
 
   // Using React Query
-  const { data: avaiableService, isLoading, refetch } = useQuery(['available', formatedDate], () => fetch(`https://enigmatic-garden-93442.herokuapp.com/available?date=${formatedDate}`)
-    .then(res => res.json()))
 
+  const { data: avaiableService, isLoading, refetch } = useQuery(['available', formatedDate], () => fetch(`https://doctors-portal-server2.herokuapp.com/available?date=${formatedDate}`).then(res => res.json()))
 
   if (isLoading) {
     return <Loading></Loading>
   }
-
 
   return (
     <div className='max-w-7xl mx-auto lg:py-12'>

@@ -5,7 +5,7 @@ const DeletConfirmModel = ({ deletDoctor, refetch, setDeleteDoctor }) => {
   const { name, email } = deletDoctor;
 
   const handDelete = () => {
-    fetch(`https://enigmatic-garden-93442.herokuapp.com/doctor/${email}`, {
+    fetch(`https://doctors-portal-server2.herokuapp.com/doctor/${email}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -25,13 +25,13 @@ const DeletConfirmModel = ({ deletDoctor, refetch, setDeleteDoctor }) => {
   return (
     <div>
       {/* <!-- Put this part before </body> tag-- > */}
-      <input type="checkbox" id="delete-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg text-red-500">Are you want to delete ${name}!</h3>
-          <div class="modal-action">
+      <input type="checkbox" id="delete-modal" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-red-500">Are you want to delete ${name}!</h3>
+          <div className="modal-action">
             <button onClick={handDelete} className="btn btn-xs bg-red-600" >Delete</button>
-            <label for="delete-modal" class="btn btn-xs">Cancel!</label>
+            <label for="delete-modal" className="btn btn-xs">Cancel!</label>
           </div>
         </div>
       </div>

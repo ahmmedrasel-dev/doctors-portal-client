@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
 
-  const { _id, name, slots } = treatment;
+  const { _id, name, slots, price } = treatment;
   const [user, loading, error] = useAuthState(auth);
   const formateDate = format(date, 'PP');
 
@@ -19,6 +19,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       teatmentName: name,
       date: formateDate,
       slot,
+      price,
       patientName: user.displayName,
       patiendEmail: user.email,
       phone: e.target.phone.value
@@ -26,7 +27,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
 
     try {
       const setBooking = async () => {
-        const { data } = await axios.post('https://enigmatic-garden-93442.herokuapp.com/booking', booking);
+        const { data } = await axios.post('https://doctors-portal-server2.herokuapp.com/booking', booking);
         if (data.success) {
           toast.success(data.message)
         } else {

@@ -12,7 +12,7 @@ const AddDoctors = () => {
     reset
   } = useForm();
 
-  const { data: services } = useQuery('/services', () => fetch(`https://enigmatic-garden-93442.herokuapp.com/services`).then(res => res.json()))
+  const { data: services } = useQuery('/services', () => fetch(`https://doctors-portal-server2.herokuapp.com/services`).then(res => res.json()))
 
   const imgStorageKey = `71c3b2215e8817f9c1afc8f8d7c617f4`;
   const onSubmit = async data => {
@@ -35,7 +35,7 @@ const AddDoctors = () => {
             img: img
           }
 
-          fetch('https://enigmatic-garden-93442.herokuapp.com/doctor', {
+          fetch('https://doctors-portal-server2.herokuapp.com/doctor', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

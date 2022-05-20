@@ -2,7 +2,8 @@
   {
     "_id": 1,
     "name": "Orthodontics",
-    "slot": [
+    "price": 100,
+    "slots": [
       "08.00 AM - 08.30 AM",
       "08.30 AM - 09.00 AM",
       "09.00 AM - 09.30 AM",
@@ -16,7 +17,8 @@
   {
     "_id": 2,
     "name": "Cosmetic Dentistry",
-    "slot": [
+    "price": 100,
+    "slots": [
       "04.00 PM - 04.30 PM",
       "04.30 PM - 05.00 PM",
       "05.00 PM - 05.30 PM",
@@ -30,7 +32,8 @@
   {
     "_id": 3,
     "name": "Teeth Cleaning",
-    "slot": [
+    "price": 100,
+    "slots": [
       "08.00 AM - 08.30 AM",
       "08.30 AM - 09.00 AM",
       "09.00 AM - 09.30 AM",
@@ -44,7 +47,8 @@
   {
     "_id": 4,
     "name": "Teeth Implants",
-    "slot": [
+    "price": 100,
+    "slots": [
       "08.00 AM - 08.30 AM",
       "08.30 AM - 09.00 AM",
       "09.00 AM - 09.30 AM",
@@ -58,12 +62,14 @@
   {
     "_id": 5,
     "name": "Root canals",
-    "slot": [ ]
+    "price": 100,
+    "slots": [ ]
   },
   {
     "_id": 6,
     "name": "Teeth Fillings",
-    "slot": [
+    "price": 100,
+    "slots": [
       "08.00 AM - 08.30 AM",
       "08.30 AM - 09.00 AM",
       "09.00 AM - 09.30 AM",

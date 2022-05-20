@@ -1,6 +1,6 @@
 import React from 'react';
 const BookingService = ({ service, setTreatment }) => {
-  const { name, slots } = service;
+  const { name, slots, price } = service;
   return (
     <div className="card bg-base-100 shadow-xl">
       <div className="card-body items-center">
@@ -14,6 +14,7 @@ const BookingService = ({ service, setTreatment }) => {
           }
         </p>
         <p>{slots?.length} {slots?.length ? 'Spaces' : 'Space'} Available</p>
+        <p>Price: ${price}</p>
         <div className="card-actions">
           <label
             disabled={slots?.length === 0}

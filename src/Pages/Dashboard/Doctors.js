@@ -15,7 +15,7 @@ const Doctors = ({ doctor, refetch, setDeleteDoctor }) => {
       <td>{email}</td>
       <td>{speciality}</td>
       <td>
-        <label for="delete-modal" onClick={() => setDeleteDoctor(doctor)} class="btn btn-xs bg-red-600">Delete</label>
+        <label for="delete-modal" onClick={() => setDeleteDoctor(doctor)} className="btn btn-xs bg-red-600">Delete</label>
       </td>
     </tr>
   );

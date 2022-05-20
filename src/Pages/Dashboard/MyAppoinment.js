@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 const MyAppoinment = () => {
   const [appoinments, setAppoinments] = useState([]);
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-    const apiUrl = `https://enigmatic-garden-93442.herokuapp.com/booking?patient=${user.email}`
+    const apiUrl = `https://doctors-portal-server2.herokuapp.com/booking?patient=${user.email}`
     if (user) {
       fetch(apiUrl, {
         method: 'GET',
@@ -39,6 +39,7 @@ const MyAppoinment = () => {
               <th>Name</th>
               <th>Date</th>
               <th>Time</th>
+              <th>Payment</th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +50,10 @@ const MyAppoinment = () => {
                 <td>{a.patientName}</td>
                 <td>{a.date}</td>
                 <td>{a.slot}</td>
+                <td>
+                  {(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}><button className='btn btn-sm btn-success'>Pay</button></Link>}
+                  {(a.price && a.paid) && <Link to={''}><span className='text-success'>Paid</span></Link>}
+                </td>
               </tr>)
             }
 
