@@ -26,7 +26,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
 
     try {
       const setBooking = async () => {
-        const { data } = await axios.post('https://safe-gorge-75792.herokuapp.com/booking', booking);
+        const { data } = await axios.post('https://enigmatic-garden-93442.herokuapp.com/booking', booking);
         if (data.success) {
           toast.success(data.message)
         } else {

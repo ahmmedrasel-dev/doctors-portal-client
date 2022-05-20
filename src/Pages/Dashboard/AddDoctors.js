@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
-import Loading from '../Shared/Loading';
 
 const AddDoctors = () => {
 
@@ -14,7 +12,7 @@ const AddDoctors = () => {
     reset
   } = useForm();
 
-  const { data: services, isLoading } = useQuery('/services', () => fetch(`https://safe-gorge-75792.herokuapp.com/services`).then(res => res.json()))
+  const { data: services } = useQuery('/services', () => fetch(`https://enigmatic-garden-93442.herokuapp.com/services`).then(res => res.json()))
 
   const imgStorageKey = `71c3b2215e8817f9c1afc8f8d7c617f4`;
   const onSubmit = async data => {
@@ -37,7 +35,7 @@ const AddDoctors = () => {
             img: img
           }
 
-          fetch('https://safe-gorge-75792.herokuapp.com/doctor', {
+          fetch('https://enigmatic-garden-93442.herokuapp.com/doctor', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
@@ -118,7 +116,8 @@ const AddDoctors = () => {
               <label className="label">
                 <span className="label-text">Speciality</span>
               </label>
-              <select {...register('speciality')} name="slot" className="select select-bordered w-full max-w-xs">
+              <select {...register('speciality')}
+                className="select select-bordered w-full max-w-xs">
                 {
                   services?.map(service => <option
                     value={service.name}

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -9,29 +8,24 @@ const MyAppoinment = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-    const apiUrl = `https://safe-gorge-75792.herokuapp.com/booking?patient=${user.email}`
-
-    const getData = async () => {
-      try {
-        const token = localStorage.getItem('accessToken');
-        const response = await axios.get(apiUrl, {
-          headers: {
-            'authorization': `Bearer ${token}`
-          }
-        });
-
-        setAppoinments(response.data);
-      }
-      catch (error) {
-        if (error.response.status === 401 || error.response.status === 403) {
-          signOut(auth);
-          localStorage.removeItem('accessToken');
-          navigate('/')
+    const apiUrl = `https://enigmatic-garden-93442.herokuapp.com/booking?patient=${user.email}`
+    if (user) {
+      fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
-      }
+      })
+        .then(res => {
+          if (res.status === 401 || res.status === 403) {
+            signOut(auth);
+            localStorage.removeItem('accessToken');
+            navigate('/')
+          }
+          return res.json()
+        })
+        .then(data => setAppoinments(data))
     }
-
-    getData()
   }, [user])
   return (
     <div>

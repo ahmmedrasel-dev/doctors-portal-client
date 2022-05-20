@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react"
 
 const useToken = user => {
@@ -7,13 +6,19 @@ const useToken = user => {
     const email = user?.user?.email;
     const currentUser = { email: email }
     if (email) {
-      const putUser = async () => {
-        const { data } = await axios.put(`https://safe-gorge-75792.herokuapp.com/user/${email}`, currentUser);
-        const accessToken = data.token;
-        localStorage.setItem('accessToken', accessToken)
-        setToken(accessToken)
-      }
-      putUser();
+      fetch(`https://enigmatic-garden-93442.herokuapp.com/user/${email}`, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(currentUser)
+      })
+        .then(res => res.json())
+        .then(data => {
+          const accessToken = data.token;
+          localStorage.setItem('accessToken', accessToken)
+          setToken(accessToken)
+        })
     }
 
   }, [user])
