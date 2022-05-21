@@ -8,7 +8,7 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_F7Vho272jVFTDHQwm6PSx4vQ00zuVEmORb');
 const Payment = () => {
   const { id } = useParams();
-  const url = `http://localhost:5000/booking/${id}`;
+  const url = `https://doctors-portal-server2.herokuapp.com/booking/${id}`;
   const { data: appoinment, isLoading } = useQuery(['booking', id], () => fetch(url, {
     method: 'GET',
     headers: {
@@ -35,7 +35,7 @@ const Payment = () => {
           <div className="card flex-shrink-0 w-96 max-w-lg shadow-2xl bg-base-100">
             <div className="card-body">
               <Elements stripe={stripePromise}>
-                <CheckoutForm />
+                <CheckoutForm appoinment={appoinment} />
               </Elements>
             </div>
           </div>
